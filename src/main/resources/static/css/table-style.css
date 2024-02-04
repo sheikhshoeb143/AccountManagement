@@ -1,0 +1,103 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+    /* Change your font family */
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: #f6f5f7;
+    text-align: -webkit-center;
+
+    height: 100vh;
+    margin: -20px 0 50px;
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+    background-color: #00857A;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:hover {
+    background-color: #FFD200; /* Highlight color on hover */
+    cursor: pointer;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #00857A;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #00857A;
+}
+
+#searchInput {
+    margin: 10px;
+    padding: 5px;
+    color: #00857a;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    /* text-transform: uppercase; */
+    border-radius: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(0 0 0);
+    border-image: initial;
+    padding: 12px 45px;
+    transition: transform 80ms ease-in 0s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: red;
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Table - ABN Amro POC - Sheikh Shoeb</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table-style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+    <h1 style="text-align: center; margin-top: 40px;" >Live User Database</h1>
+
+    <!-- Add a search input field -->
+    <input type="text" id="searchInput" placeholder="Search...">
+
+    <table id="dataTable" class="content-table">
+        <!-- Table headers will be added dynamically using JavaScript -->
+        <thead>
+        <tr>
+            <!-- Header cells go here -->
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Table rows will be added dynamically using JavaScript -->
+        </tbody>
+    </table>
+
+    <footer>
+        <p>
+            Created with <i class="fa fa-heart"></i> by
+            <a style="color: #FF4B2B;" target="_blank" href="https://sheikhshoeb.com">Sheikh Shoeb</a>
+        </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/js/displayData.js"></script> <!-- Link to your JavaScript file -->
+
+</body>
+</html>

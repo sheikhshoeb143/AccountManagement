@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Operation - ABN Amro POC - Sheikh Shoeb</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h2>ABN Amro POC for Account Operations</h2>
+    <div class="container" id="container">
+      <div class="form-container fetch-container" id="fetch-account">
+        <form action="#">
+          <h1>Fetch Account</h1>
+
+          <input type="text" id="userIdInput" placeholder="ID" />
+          <button type="button" id="" class="operation-btn" onclick="fetchAndDisplayUserData()">Search</button>
+
+          <input type="text" id="fullNameFetch" placeholder="Full Name" disabled/>
+          <input type="text" id="stateFetch" placeholder="State" disabled/>
+          <input type="text" id="bankNameFetch" placeholder="Bank Name" disabled/>
+          <input type="text" id="ifscCodeFetch" placeholder="IFSC Code" disabled/>
+          <input type="text" id="accountTypeFetch" placeholder="Account Type" disabled/>
+          <input type="text" id="accountNumberFetch" placeholder="Account Number" disabled/>
+          <input type="text" id="amountFetch" placeholder="Amount" disabled/>
+        </form>
+
+      </div>
+      <div class="form-container fetch-container" id="update-account" style="display: none;">
+        <form action="#"  id="updateForm">
+          <h1>Update Account</h1>
+
+          <input type="text" id="userIdUpdate" placeholder="ID" />
+          <input type="text" id="fullNameUpdate" placeholder="Full Name" />
+          <input type="text" id="stateUpdate" placeholder="State" />
+          <input type="text" id="bankNameUpdate" placeholder="Bank Name" />
+          <input type="text" id="ifscCodeUpdate" placeholder="IFSC Code" />
+          <input type="text" id="accountTypeUpdate" placeholder="Account Type" />
+          <input type="text" id="accountNumberUpdate" placeholder="Account Number" />
+          <input type="text" id="amountUpdate" placeholder="Amount" />
+
+          <p id="error-message-update" style="color: red; margin: 10px;"></p>
+          <button type="button" class="operation-btn" onclick="updateUser()">Update</button>
+        </form>
+
+      </div>
+      <div class="form-container fetch-container" id="patch-account" style="display: none;">
+        <form action="#" id="patchForm">
+          <h1>Patch Account</h1>
+
+          <input type="text" id="userIdPatch" placeholder="ID" />
+          <input type="text" id="fullNamePatch" placeholder="Full Name" />
+          <input type="text" id="statePatch" placeholder="State" />
+          <input type="text" id="bankNamePatch" placeholder="Bank Name" />
+          <input type="text" id="ifscCodePatch" placeholder="IFSC Code" />
+          <input type="text" id="accountTypePatch" placeholder="Account Type" />
+          <input type="text" id="accountNumberPatch" placeholder="Account Number" />
+          <input type="text" id="amountPatch" placeholder="Amount" />
+
+          <p id="error-message-patch" style="color: red; margin: 10px;"></p>
+          <button type="button" class="operation-btn" onclick="patchUser()">Patch</button>
+        </form>
+
+      </div>
+      <div class="form-container fetch-container" id="delete-account-by-id" style="display: none;">
+        <form action="#" id="deleteForm">
+          <h1>Delete Account</h1>
+          <p>Do you really want to delete the below user?</p>
+          <input type="text" id="userIdDelete" placeholder="ID" />
+
+            <p id="error-message-delete" style="color: red; margin: 10px;"></p>
+          <button type="button" class="delete-btn operation-btn" onclick="deleteUser()">Delete</button>
+        </form>
+
+      </div>
+      <div class="form-container fetch-container" id="delete-all-account" style="display: none;">
+        <form action="#" id="deleteAllForm">
+          <h1>Delete All Account</h1>
+          <p>Do you really want to delete all records?</p>
+          <button type="button" class="delete-btn operation-btn" onclick="deleteAllUsers()">Delete All</button>
+        </form>
+      </div>
+      <div class="form-container create-container">
+        <form action="#">
+          <h1>Create User</h1>
+
+          <input type="text" id="fullName" placeholder="Full Name" />
+          <input type="text" id="state" placeholder="State" />
+<!--          <input type="text" id="bankName" placeholder="Bank Name" />-->
+
+
+          <select id="bankName" style="background-color: #eee; border: none; padding: 12px 15px; margin: 8px 0; width: 100%; -webkit-appearance: none;" placeholder="Bank Name">
+            <option value="" disabled selected>Bank Name</option>
+            <option value="Bank of Baroda">Bank of Baroda</option>
+            <option value="Bank of India">Bank of India</option>
+            <option value="Bank of Maharashtra">Bank of Maharashtra</option>
+            <option value="Canara Bank">Canara Bank</option>
+            <option value="Central Bank of India">Central Bank of India</option>
+            <option value="ICICI Bank">ICICI Bank</option>
+            <option value="HDFC Bank">HDFC Bank</option>
+            <option value="Indian Bank">Indian Bank</option>
+            <option value="State Bank of India">State Bank of India</option>
+            <option value="UCO Bank">UCO Bank</option>
+
+
+
+          </select>
+
+          <input type="text" id="ifscCode" placeholder="IFSC Code" />
+<!--          <input type="text" id="accountType" placeholder="Account Type" />-->
+          <select id="accountType" style="background-color: #eee; border: none; padding: 12px 15px; margin: 8px 0; width: 100%; -webkit-appearance: none;" placeholder="Account Type">
+            <option value="" disabled selected>Account Type</option>
+            <option value="Current">Current</option>
+            <option value="Saving">Saving</option>
+          </select>
+          <input type="text" id="accountNumber" placeholder="Account Number" maxlength="10" />
+          <input type="text" id="amount" placeholder="Amount" />
+
+          <p id="error-message" style="color: red; margin: 10px;"></p>
+          <button type="button" class="operation-btn" onclick="submitForm()">Create</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>To fetch your details please enter your ID</p>
+            <button class="ghost" id="create">Create User</button>
+            <button class="ghost" onclick="openLiveDatabaseTab()">Live Database</button>
+            <button class="ghost" id="back">Go Back</button>
+
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello, User!</h1>
+            <p>Enter your details and start journey with us</p>
+            <button class="ghost" id="fetch">Search</button>
+            <button class="ghost" id="update">Update</button>
+            <button class="ghost" id="patch">Patch</button>
+            <button class="ghost" id="delete">Delete</button>
+            <button class="ghost" id="delete-all">Delete All</button>
+            <button class="ghost" onclick="openLiveDatabaseTab()">Live Database</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Created with <i class="fa fa-heart"></i> by
+        <a style="color: #FF4B2B;" target="_blank" href="https://sheikhshoeb.com">Sheikh Shoeb</a>
+      </p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script th:src="@{/js/app.js}"></script>
+
+    <script>
+      function openLiveDatabaseTab() {
+        var url = 'http://localhost:8080/user-table';
+         // Open a new tab
+        window.open(url, '_blank');
+      }
+    </script>
+</body>
+</html>
